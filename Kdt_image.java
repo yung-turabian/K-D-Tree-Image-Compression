@@ -218,9 +218,9 @@ public class Kdt_image {
 
         bridges.setTitle("Image Representation/Compression Using K-D Trees");
 
-        part1 = true; // UNCHECK TO RUN DIFFERENT PARTS
+        part1 = false; // UNCHECK TO RUN DIFFERENT PARTS
         part2 = false;
-        part3 = false;
+        part3 = true;
         copyMethod = true;
 
 
@@ -228,7 +228,7 @@ public class Kdt_image {
             Image image = null;
 
             // Read image
-            image = new Image("images/square.ppm");
+            image = new Image(args[0]);//"images/square.ppm");
 
             ColorGrid cg = null;
 
@@ -251,7 +251,7 @@ public class Kdt_image {
                 image = null;
 
                 // Read image
-                image = new Image("images/square.ppm");
+                image = new Image(args[0]);//"images/square.ppm");
 
                 cg = null;
 
@@ -279,7 +279,7 @@ public class Kdt_image {
                 image = null;
 
                 // Read image
-                image = new Image("images/square.ppm");
+                image = new Image(args[0]);//"images/square.ppm");
 
                 cg = null;
 
@@ -381,9 +381,11 @@ public class Kdt_image {
         if (t.getPartitioner() == null) t.setPartitioner(i.readObject());
 
         int _h = 0;
-
+	// XX I don't believe
+	// this reconstructs the same tree that was written, since
+	// does not proceed in level order.
         for (int j = 0; j < h; j++) {
-            t.setLeft(t);
+            t.setLeft(t); // XX why repeat this h times??
             t.getLeft().setPartitioner(i.readObject());
             t.setRight(t);
             t.getRight().setPartitioner(i.readObject());

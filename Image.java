@@ -112,7 +112,8 @@ public class Image {
 
                 int origin_x = j * sq_width;
                 int origin_y = i * sq_height;
-
+		// XX I don't see why this is necessary.
+		// a comment might help?
                 for (int row = origin_y; row < origin_y + sq_height; row++) {
                     for (int column = origin_x; column < origin_x + sq_width; column++) {
                         cg.set(row, column, color);
@@ -133,7 +134,7 @@ public class Image {
      */
     public static Color avgColor(ColorGrid cg, int[] region) {
 	    int[] rgb = {0,0,0}; // red, green, and blue
-        int size = regionSize(region);
+	    int size = regionSize(region); // XX if zero??
 
         for (int row = region[1]; row < region[3]; row++) {
             for (int col = region[0]; col < region[2]; col++) {
@@ -218,7 +219,7 @@ public class Image {
         // Minimum is 4 pixels (return true if < 4)
         if (size < 4) return true;
 
-        Color avg = avgColor(cg, region);
+        Color avg = avgColor(cg, region); // XX good re-use
         double[] RGBav = {avg.getRed(), avg.getGreen(), avg.getBlue()};
         double VAR = 0.0;
 
